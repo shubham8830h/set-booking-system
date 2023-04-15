@@ -8,12 +8,14 @@ import { useNavigate } from "react-router-dom";
 
 const notAvailableSeat = ["K2", "I4", "I9"];
 
-export default function SeatBooking({ onNext, seatSelection }) {
+export default function SeatBooking({ seatSelection }) {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [availableSeats, setAvailableSeats] = useState([]);
+
   const navigate = useNavigate();
+
   function handleUpdateSelection(seatKey) {
-    console.log(seatSelection.seatCount, selectedSeats.length);
+    console.log(seatKey);
     if (seatSelection.seatCount <= selectedSeats.length) {
       const ssss = [...selectedSeats, seatKey];
       ssss.shift();
@@ -41,7 +43,7 @@ export default function SeatBooking({ onNext, seatSelection }) {
   }
   function getAvailableSeats() {
     let string = JSON.stringify(notAvailableSeat.flat());
-    let setitem = localStorage.setItem("setdata", string);
+    localStorage.setItem("setdata", string);
     let getItem = localStorage.getItem("setdata");
     notAvailableSeat.push({ ...notAvailableSeat, selectedSeats });
 
@@ -66,7 +68,7 @@ export default function SeatBooking({ onNext, seatSelection }) {
   function handleAutoSelection() {
     const selectedTeam = [];
     // console.log("seats", SEATS.SEAT_STRUCTURE[seatSelection.seatType]);
-   
+
     SEATS.SEAT_STRUCTURE[seatSelection.seatType].map((seatRow) => {
       seatRow.seats.map((seat) => {
         console.log(` hii ${seatRow.row}`);
@@ -84,14 +86,8 @@ export default function SeatBooking({ onNext, seatSelection }) {
 
   function handleNext() {
     notAvailableSeat.push(selectedSeats);
-    let string = JSON.stringify(notAvailableSeat.flat());
-    let setitem = localStorage.setItem("setdata", string);
-    let getItem = localStorage.getItem("setdata");
-    navigate("/confirm");
 
-    
-      console.log({...notAvailableSeat})
-   
+    navigate("/confirm");
   }
 
   function handlePrev() {

@@ -29,9 +29,7 @@ export default function App() {
             ) : null
           }
         ></Route>
-        {/* {tab === TAB_OPTIONS.SEAT_TYPE ? (
-            <SelectSeatType onNext={handleTabChange} />
-          ) : null} */}
+        
         <Route
           path="/sets"
           element={
@@ -43,9 +41,7 @@ export default function App() {
             ) : null
           }
         ></Route>
-        {/* {tab === TAB_OPTIONS.SEAT_SELECTION ? (
-          <SeatBooking onNext={handleTabChange} seatSelection={seatSelection} />
-        ) : null} */}
+       
         <Route path="/confirm" element={<Confirmation />}></Route>
       </Routes>
     </BrowserRouter>
